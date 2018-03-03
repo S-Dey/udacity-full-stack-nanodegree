@@ -10,14 +10,12 @@ def draw_square(some_turtle):
 def draw_art():
     window = turtle.Screen()
     window.bgcolor("orange")
-
     #Create the turtle 'Brad' - Draws a square
     brad = turtle.Turtle()
     brad.shape("turtle")
     brad.color("yellow")
     brad.speed(2)
     draw_square(brad)
-
     #Create the turtle 'Angie' - Draws a circle
     angie = turtle.Turtle()
     angie.shape("arrow")
