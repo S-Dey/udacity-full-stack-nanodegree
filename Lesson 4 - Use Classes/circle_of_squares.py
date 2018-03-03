@@ -1,4 +1,4 @@
-#Python program to draw a square on screen.
+#Python program to draw a circle out of squares on screen.
 import turtle
 
 def draw_square(some_turtle):
@@ -14,12 +14,9 @@ def draw_art():
     brad.shape("turtle")
     brad.color("yellow")
     brad.speed(2)
-    draw_square(brad)
-    #Create the turtle 'Angie' - Draws a circle
-    angie = turtle.Turtle()
-    angie.shape("arrow")
-    angie.color("blue")
-    angie.circle(100)
+    for i in range(1, 37):      #Run 36 times, turning each square right by 10 degrees.
+        draw_square(brad)
+        brad.right(10)
 
     window.exitonclick()
 
