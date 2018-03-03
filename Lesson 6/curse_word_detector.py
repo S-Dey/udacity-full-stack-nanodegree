@@ -7,7 +7,9 @@ def read_text():
     check_profanity(content)
 
 def check_profanity(text_to_check):
-    connection = urllib.urlopen("http://www.wdylike.appspot.com/?q=" + text_to_check)   
+    connection = urllib.urlopen("http://www.wdylike.appspot.com/?q=" + text_to_check)       #Unfortunately, it works
+                                                        #with only a single word. Writing more words would result
+                                                        #into an 404 error.
     output = connection.read()
     print(output)
     connection.close()
