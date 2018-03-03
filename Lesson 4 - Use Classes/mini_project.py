@@ -19,7 +19,7 @@ def draw_art():
     rhombus = turtle.Turtle()
     rhombus.shape("turtle")
     rhombus.color("green")
-    rhombus.speed(1)
+    rhombus.speed(0)
     for i in range(1, 37):
         draw_rhombus(rhombus)
         rhombus.right(10)
