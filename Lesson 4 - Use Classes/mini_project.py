@@ -1,37 +1,32 @@
-import random
 import turtle
 
-def tree(size, myTurtle):
-    myTurtle.pensize(size / 10)
+def draw_rhombus(some_turtle):
+    for i in range(1, 3):
+        some_turtle.forward(100)
+        some_turtle.left(45)
+        some_turtle.forward(100)
+        some_turtle.left(135)
 
-    if size < random.randint(1,2) * 20:
-        myTurtle.color("green")
-    else:
-        myTurtle.color("brown")
+def draw_line(some_line):
+    for i in range(1, 2):
+        some_line.right(90)
+        some_line.forward(300)
 
-    if size > 5:
-        myTurtle.forward(size)
-        myTurtle.left(25)
-        tree(size - random.randint(10, 20), myTurtle)
-        myTurtle.right(50)
-        tree(size - random.randint(10, 20), myTurtle)
-        myTurtle.left(25)
-        myTurtle.penup()
-        myTurtle.backward(size)
-        myTurtle.pendown()
+def draw_art():
+    window = turtle.Screen()
+    window.bgcolor("orange")
+    
+    rhombus = turtle.Turtle()
+    rhombus.shape("turtle")
+    rhombus.color("green")
+    rhombus.speed(1)
+    for i in range(1, 37):
+        draw_rhombus(rhombus)
+        rhombus.right(10)
+        #Create the turtle line
+        for i in range(37, 38):
+            draw_line(rhombus)
+    
+    window.exitonclick() 
 
-
-window = turtle.Screen()
-window.bgcolor("black")
-
-myTurtle = turtle.Turtle()
-myTurtle.color("brown", "blue")
-myTurtle.left(90)
-myTurtle.speed(0)
-myTurtle.penup()
-myTurtle.setpos(0, -250)
-myTurtle.pendown()
-
-tree(120, myTurtle)
-
-window.exitonclick()
+draw_art()
