@@ -1,4 +1,4 @@
-#This Python file generates an HTML page showing a list of movies that are passed as 
+# This Python file generates an HTML page showing a list of movies that are passed as 
 # as a list of instances of the class Movie to the file `fresh_tomatoes.py` 
 import fresh_tomatoes
 import media
