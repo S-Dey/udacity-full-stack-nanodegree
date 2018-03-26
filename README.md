@@ -6,4 +6,4 @@ This code repository contains the sources for the concepts learnt in Udacity's [
 Feel free to fork this repository and make your own changes.
 
 ## Contact Information
-If you wish to contact me, you can either contact me on [Twitter](https://twitter.com/SDey_96] or create an issue here.
+If you wish to contact me, you can either contact me on [Twitter](https://twitter.com/SDey_96) or create an issue here.
