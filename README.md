@@ -1,9 +1,9 @@
-# Udacity Full Stack Web Developer Nanodegree Code Repository
+# Udacity Full Stack Web Developer Nanodegree I Code Repository
 
 ## About
-This code repository contains the sources for the concepts learnt in Udacity's [Full Stack Web Developer nanodegree](https://in.udacity.com/course/full-stack-web-developer-nanodegree--nd004).
+This repository contains the source codes for the concepts learnt in Udacity's [Full Stack Web Developer I nanodegree](https://in.udacity.com/course/full-stack-web-developer-nanodegree--nd004).
 
-Feel free to fork this repository and make your own changes.
+Feel free to fork this repository and/or contribute your own modifications.
 
 ## Contact Information
-If you wish to contact me, you can either contact me on [Twitter](https://twitter.com/SDey_96) or create an issue here.
+If you wish to contact me, you can reach me on [Twitter](https://twitter.com/SDey_96).
