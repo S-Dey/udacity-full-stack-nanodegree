@@ -2,14 +2,16 @@
 
 ## animals
 This table lists individual animals in the zoo. Each animal has only one row. There may be multiple animals with the same name, or even multiple animals with the same name and species.
-name — the animal's name (example: 'George')
-species — the animal's species (example: 'gorilla')
-birthdate — the animal's date of birth (example: '1998-05-18')
+
+       - name — the animal's name (example: 'George')
+       - species — the animal's species (example: 'gorilla')
+       - birthdate — the animal's date of birth (example: '1998-05-18')
 
 ## diet
 This table matches up species with the foods they eat. Every species in the zoo eats at least one sort of food, and many eat more than one. If a species eats more than one food, there will be more than one row for that species.
-species — the name of a species (example: 'hyena')
-food — the name of a food that species eats (example: 'meat')
+
+       - species — the name of a species (example: 'hyena')
+       - food — the name of a food that species eats (example: 'meat')
 
 ## taxonomy
 This table gives the (partial) biological taxonomic names for each species in the zoo. It can be used to find which species are more closely related to each other evolutionarily.
