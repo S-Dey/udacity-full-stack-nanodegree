@@ -28,7 +28,7 @@ This table gives the common names for each of the taxonomic orders in the taxono
 
 
 # The SQL for it
-```
+````
 create table animals (  
        name text,
        species text,
@@ -48,4 +48,4 @@ create table taxonomy (
 create table ordernames (
        t_order text,
        name text);
-```
+````
