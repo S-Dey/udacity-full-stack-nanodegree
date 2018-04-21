@@ -29,7 +29,7 @@ This table gives the common names for each of the taxonomic orders in the taxono
 
 # The SQL for it
 ````
-create table animals (  
+CREATE table animals (  
        name text,
        species text,
        birthdate date);
