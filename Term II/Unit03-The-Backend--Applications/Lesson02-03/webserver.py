@@ -3,15 +3,14 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
 class WebServerHandler(BaseHTTPRequestHandler):
-
     def do_GET(self):
         if self.path.endswith("/hello"):
             self.send_response(200)
-            self.send_header('Content-type', 'text/html')
+            self.send_header('Content-type', 'text/html; charset=utf-8')
             self.end_headers()
             message = ""
             message += "<html><body>Hello!</body></html>"
-            self.wfile.write(message)
+            self.wfile.write(message.encode())
             print(message)
             return
         else:
@@ -20,13 +19,13 @@ class WebServerHandler(BaseHTTPRequestHandler):
 
 def main():
     try:
-        port = 8080
-        server = HTTPServer(('', port), WebServerHandler)
+        port = 8000
+        httpd = HTTPServer(('', port), WebServerHandler)
         print("Web Server running on port %s" % port)
-        server.serve_forever()
+        httpd.serve_forever()
     except KeyboardInterrupt:
-        print(" ^C entered, stopping web server....")
-        server.socket.close()
+        print("^C entered, stopping web server....")
+        httpd.socket.close()
 
 
 if __name__ == '__main__':
