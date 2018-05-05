@@ -16,7 +16,11 @@ menu_items = session.query(MenuItem).all()
 for menu_item in menu_items:
     pprint(vars(menu_item))
     print("\n")
+
+for menu_item in menu_items:
+    print(menu_item.name)
 """
+
 count = 0
 
 for menu_item in menu_items:
