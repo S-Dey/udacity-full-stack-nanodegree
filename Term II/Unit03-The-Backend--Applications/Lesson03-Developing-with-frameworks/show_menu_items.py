@@ -21,9 +21,22 @@ for menu_item in menu_items:
     print(menu_item.name)
 """
 
+"""
 count = 0
 
 for menu_item in menu_items:
     count += 1
 
 print(count)
+"""
+
+
+for menu_item in menu_items:
+    print("ID: ", menu_item.id)
+    print("Name: ", menu_item.name)
+    print("Description: ", menu_item.description)
+    print("Price: ", menu_item.price)
+    print("Course: ", menu_item.course)
+    print("Restaurant_ID: ", menu_item.restaurant_id)
+    print("Restaurant: ", menu_item.restaurant)
+    print("\n\n")

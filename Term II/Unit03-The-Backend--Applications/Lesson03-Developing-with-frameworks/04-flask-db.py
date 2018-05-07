@@ -19,13 +19,29 @@ def homepage():
         """
 
 
-@app.route("/all_restaurants")
-def hello():
+@app.route("/menu_items")
+def menu_items():
     results = session.query(MenuItem).all()
+    output = ''
+    newline = "<br>"
+
+    for result in results:
+        output += str(result.id) + ". "
+        output += result.name + newline
+        output += result.description + newline
+        output += result.course + newline
+        output += str(result.restaurant_id) + newline + newline
+
+    return output
+
+
+@app.route("/restaurant_items")
+def restaurant_all():
+    results = session.query(Restaurant).all()
     output = ''
 
     for result in results:
-        output += result.name + '<br>'
+        output += str(result.id) + ". " + result.name + '<br>'
 
     return output
 
