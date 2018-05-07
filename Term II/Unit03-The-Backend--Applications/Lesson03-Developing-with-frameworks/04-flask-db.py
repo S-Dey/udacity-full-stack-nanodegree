@@ -26,7 +26,7 @@ def hello():
 
     for result in results:
         output += result.name + '<br>'
-    
+
     return output
 
 
