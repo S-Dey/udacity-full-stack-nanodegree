@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit Name for {{ item_to_edit.name }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <form action="{{ url_for('edit_menu_item', menuitem_id=item_to_edit.id) }}" method="POST">
+        <input type="text" name="name" placeholder="{{ item_to_edit.name }}">
+        <input type="submit" value="Submit">
+    </form>    
+</body>
+</html>
