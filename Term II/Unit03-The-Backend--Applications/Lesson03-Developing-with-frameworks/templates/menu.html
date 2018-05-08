@@ -7,17 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    {% for menu_item in results %}
-        <p><b>ID: </b>{{ menu_item.id }}</p>
-        <p><b>Name: </b>{{ menu_item.name }}</p>
-        <p><b>Description: </b>{{ menu_item.description }}</p>
-        <p><b>Price: </b>{{ menu_item.price }}</p>
-        <p><b>Course: </b>{{ menu_item.course }}</p>
-        <br>
-        <a href="{{ url_for('edit_menu_item', menuitem_id=menu_item.id) }}">Edit</a>
-        <br>
-        <a href="{{ url_for('delete_menu_item', menuitem_id=menu_item.id) }}">Delete</a>
-    {% endfor %}
-    
+    {% if results %}
+        {% for menu_item in results %}
+            <p><b>ID: </b>{{ menu_item.id }}</p>
+            <p><b>Name: </b>{{ menu_item.name }}</p>
+            <p><b>Description: </b>{{ menu_item.description }}</p>
+            <p><b>Price: </b>{{ menu_item.price }}</p>
+            <p><b>Course: </b>{{ menu_item.course }}</p>
+            <br>
+            <a href="{{ url_for('edit_menu_item', menuitem_id=menu_item.id) }}">Edit</a>
+            <br>
+            <a href="{{ url_for('delete_menu_item', menuitem_id=menu_item.id) }}">Delete</a>
+        {% endfor %}
+    {% else %}
+        <p>The item does not exist!</p>
+    {% endif %}       
 </body>
 </html>

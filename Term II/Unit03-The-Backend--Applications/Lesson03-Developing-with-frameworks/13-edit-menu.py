@@ -48,7 +48,10 @@ def new_menu_item(restaurant_id):
 
 @app.route("/menu_items/<int:menuitem_id>/delete/")
 def delete_menu_item(menuitem_id):
-    return "Delete Menu Item"
+    item_to_delete = session.query(MenuItem).filter_by(id=menuitem_id).one()
+    session.delete(item_to_delete)
+    session.commit()
+    return render_template("delete_message.html", item_deleted=item_to_delete)
 
 
 if __name__ == "__main__":
