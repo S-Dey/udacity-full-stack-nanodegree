@@ -23,14 +23,14 @@ def homepage():
 def menu_items():
     results = session.query(MenuItem).all()
     output = ''
-    newline = "<br>"
 
     for result in results:
         output += str(result.id) + ". "
-        output += result.name + newline
-        output += result.description + newline
-        output += result.course + newline
-        output += str(result.restaurant_id) + newline + newline
+        output += "<p><b>Name: </b>" + result.name + "</p>"
+        output += "<p><b>Description: </b>" + result.description + "</p>"
+        output += "<p><b>Course: </b>" + result.course + "</p>"
+        output += "<p><b>Restaurant ID: </b>" + str(result.restaurant_id)
+        output += "</p><br><br>"
 
     return output
 
