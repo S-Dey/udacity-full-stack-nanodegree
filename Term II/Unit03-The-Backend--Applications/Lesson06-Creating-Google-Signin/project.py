@@ -16,7 +16,7 @@ import requests
 app = Flask(__name__)
 
 CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']            
+    open('client_secrets.json', 'r').read())['web']['client_id']
 
 # Connect to Database and create database session
 engine = create_engine('sqlite:///restaurantmenu.db',
@@ -87,8 +87,8 @@ def gconnect():
     stored_access_token = login_session.get('access_token')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_access_token is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
-                                 200)
+        response = make_response(
+            json.dumps('Current user is already connected.'), 200)
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -117,6 +117,7 @@ def gconnect():
     flash("You are now logged in as %s" % login_session['username'])
     print("Done!")
     return output
+
 
 # JSON APIs to view Restaurant Information
 @app.route('/restaurant/<int:restaurant_id>/menu/JSON')
@@ -203,7 +204,7 @@ def showMenu(restaurant_id):
                    .filter_by(restaurant_id=restaurant_id)\
                    .all()
     return render_template('menu.html', items=items, restaurant=restaurant)
-   
+
 
 # Create a new menu item
 @app.route('/restaurant/<int:restaurant_id>/menu/new/',
