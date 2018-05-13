@@ -17,7 +17,7 @@
                 auth2 = gapi.auth2.init({
                     client_id: '370653875392-tt3m081mbogc4rvcv2eies3h5inv22rq.apps.googleusercontent.com',
                     cookiepolicy: 'single_host_origin'
-                    });
+                });
             });
         }
     </script>
@@ -26,36 +26,56 @@
         #signinButton:hover {
             cursor: pointer;
             background: url('/static/btn_google_focus.png');          
-        }
-
-        #signinButton:visited {
-            cursor: pointer;
-            background: url('/static/btn_google_pressed.png');          
-        }
-    
+        }    
     </style>
 </head>
 <body>
     <img src="/static/btn_google.png" id="signinButton">
+    <br>
+    <div id="result"></div>
+
     <script>
         $('#signinButton').click(function() {
             auth2.grantOfflineAccess().then(signInCallback);
         });
     </script>
 
-    
     <script>
         function signInCallback(authResult) {
-            if (authResult['code']) {
+        if (authResult['code']) {
 
-                // Hide the sign-in button now that the user is authorized, for example:
-                $('#signinButton').attr('style', 'display: none');
-                console.log(authResult['code']);
-            }
+            // Hide the sign-in button now that the user is authorized, for example:
+            $('#signinButton').attr('style', 'display: none');
+
+            // Send the code to the server
+            $.ajax({
+                type: 'POST',
+                url: '/gconnect?state={{STATE}}',
+                // Always include an `X-Requested-With` header in every AJAX request,
+                // to protect against CSRF attacks.
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                contentType: 'application/octet-stream; charset=utf-8',
+                success: function(result) {
+                    // Handle or verify the server response.
+                    if (result) {
+                        $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...');
+                        setTimeout(function() {
+                            window.location.href = "/restaurant";
+                        }, 4000);
+                    } else if (authResult['error']) {
+                        console.log('There was an error: ' + authResult['error']);
+                    }
+                },
+                processData: false,
+                data: authResult['code']
+                });
+        } else {
+            $('#result').html('Failed to make a server-side call. Check your configuration and console.');
         }
-    </script>
-
-    
+        }
+    </script>      
 
 </body>
 </html>
