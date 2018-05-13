@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+    <script>
+            function start() {
+              gapi.load('auth2', function() {
+                auth2 = gapi.auth2.init({
+                  client_id: '370653875392-tt3m081mbogc4rvcv2eies3h5inv22rq.apps.googleusercontent.com',
+                  cookiepolicy: 'single_host_origin'
+                });
+              });
+            }
+    </script>
+
+    <style>
+        #signinButton:hover {
+            cursor: pointer;
+            background: url('/static/btn_google_focus.png');          
+        }
+
+        #signinButton:visited {
+            cursor: pointer;
+            background: url('/static/btn_google_pressed.png');          
+        }
+    
+    </style>
+</head>
+<body>
+    <img src="/static/btn_google.png" id="signinButton">
+    <script>
+        $('#signinButton').click(function() {
+            auth2.grantOfflineAccess().then(signInCallback);
+        });
+    </script>
+
+    
+    <script>
+        function signInCallback(authResult) {
+            if (authResult['code']) {
+
+                // Hide the sign-in button now that the user is authorized, for example:
+                $('#signinButton').attr('style', 'display: none');
+                console.log(authResult['code']);
+            }
+        }
+    </script>
+
+    
+
+</body>
+</html>
