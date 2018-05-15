@@ -31,7 +31,7 @@ session = DBSession()
 @app.route('/login/')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
-                    for x in xrange(32))
+                    for x in range(32))
     login_session['state'] = state
     # return "The current session state is %s" % login_session['state']
     return render_template('login.html', STATE=state)
@@ -44,8 +44,11 @@ def fbconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
     access_token = request.data
-    print "\naccess token received %s " % access_token
-    print "\nType of access token is %s" % type(access_token)
+    access_token_str = access_token.decode()
+    print("\naccess token received: ", access_token)
+    print("\naccess token received after decode: ", access_token_str)
+    print("\nType of access_token is:", type(access_token))
+    print("\nType of access_token_str is:", type(access_token_str))
 
 
     app_id = json.loads(open('fb_client_secrets.json', 'r').read())[
@@ -53,14 +56,14 @@ def fbconnect():
     app_secret = json.loads(
         open('fb_client_secrets.json', 'r').read())['web']['app_secret']
     url = 'https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s' % (
-        app_id, app_secret, access_token)
+        app_id, app_secret, access_token_str)
+    print("\n\nType of URL is: ", type(url))
     h = httplib2.Http()
-    result = h.request(url, 'GET')[1]
-    print "\n\nURL is {}\n\nresult is:{}\n".format(url, result)
-    print "\nType of result is", type(result)
-    print "\n\nApp ID: ", app_id
-    print "\n\nApp Secret: ", app_secret
-   
+    result = h.request(url, 'GET')[1].decode()
+    print("\n\nURL is {}\n\nresult is:{}\n".format(url, result))
+    print("\nType of result is", type(result))
+    print("\n\nApp ID: ", app_id)
+    print("\n\nApp Secret: ", app_secret)
 
 
     # Use token to get user info from API
@@ -77,8 +80,8 @@ def fbconnect():
     url = 'https://graph.facebook.com/v2.8/me?access_token=%s&fields=name,id,email' % token
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
-    # print "url sent for API access:%s"% url
-    # print "API JSON result: %s" % result
+    print("\n\nurl sent for API access:%s"% url)
+    print("\n\nAPI JSON result: %s" % result)
     data = json.loads(result)
     login_session['provider'] = 'facebook'
     login_session['username'] = data["name"]
@@ -92,7 +95,7 @@ def fbconnect():
     url = 'https://graph.facebook.com/v2.8/me/picture?access_token=%s&redirect=0&height=200&width=200' % token
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
-    print result
+    print("FB access token returns: \n", result)
     data = json.loads(result)
 
     login_session['picture'] = data["data"]["url"]
@@ -172,7 +175,7 @@ def gconnect():
     if result['issued_to'] != CLIENT_ID:
         response = make_response(
             json.dumps("Token's client ID does not match app's."), 401)
-        print "Token's client ID does not match app's."
+        print("Token's client ID does not match app's.")
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -215,7 +218,7 @@ def gconnect():
     output += login_session['picture']
     output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
     flash("you are now logged in as %s" % login_session['username'])
-    print "done!"
+    print("done!")
     return output
 
 # User Helper Functions
@@ -257,6 +260,7 @@ def gdisconnect():
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
     h = httplib2.Http()
     result = h.request(url, 'GET')[0]
+    print("\n\n", result)
     if result['status'] == '200':
         response = make_response(json.dumps('Successfully disconnected.'), 200)
         response.headers['Content-Type'] = 'application/json'

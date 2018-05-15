@@ -44,8 +44,7 @@ def fbconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
     access_token = request.data
-    print "\naccess token received %s " % access_token
-    print "\nType of access token is %s" % type(access_token)
+    print "access token received %s " % access_token
 
 
     app_id = json.loads(open('fb_client_secrets.json', 'r').read())[
@@ -56,11 +55,6 @@ def fbconnect():
         app_id, app_secret, access_token)
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
-    print "\n\nURL is {}\n\nresult is:{}\n".format(url, result)
-    print "\nType of result is", type(result)
-    print "\n\nApp ID: ", app_id
-    print "\n\nApp Secret: ", app_secret
-   
 
 
     # Use token to get user info from API
