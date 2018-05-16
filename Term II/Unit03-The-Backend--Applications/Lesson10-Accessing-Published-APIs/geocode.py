@@ -7,14 +7,9 @@ def getGeocodeLocation(inputString):
     # FORMAT: https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_KEY
     google_api_key = "AIzaSyAZpi7itIb-ByeFcZ_OiUhEbr6xUilmFK4"
     locationString = inputString.replace(" ", "+")
-    url = ('https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s'
-           % (locationString, google_api_key))
+    url = ('https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s'% (locationString, google_api_key))
     h = httplib2.Http()
     result = json.loads(h.request(url, 'GET')[1])
     latitude = result['results'][0]['geometry']['location']['lat']
     longitude = result['results'][0]['geometry']['location']['lng']
     return (latitude, longitude)
-
-
-if __name__ == "__main__":
-    print(getGeocodeLocation('India'))
