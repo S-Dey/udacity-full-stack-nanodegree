@@ -8,7 +8,6 @@ engine = create_engine('sqlite:///restaurantmenu.db')
 Session = sessionmaker(bind=engine)
 session = Session()
 
-restaurants = session.query(Restaurant).all()
+restaurants = session.query(Restaurant).filter_by(name='Subhadeep').first()
 
-for i in restaurants:
-    print(i.serialize)
+print(restaurants)
