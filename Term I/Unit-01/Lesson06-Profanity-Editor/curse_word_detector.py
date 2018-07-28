@@ -1,4 +1,4 @@
-import urllib.request as urllib
+from urllib import parse, request
 
 
 def read_text():
@@ -9,10 +9,9 @@ def read_text():
 
 
 def check_profanity(text_to_check):
-    connection = urllib.urlopen("http://www.wdylike.appspot.com/?q="
-                                + text_to_check)
-    # Unfortunately, it works with only a single word. Writing more words
-    # would result into an 404 error.
+    quoted_query = parse.quote(text_to_check)
+    connection = request.urlopen("http://www.wdylike.appspot.com/?q="
+                                + quoted_query)
     output = connection.read()
     print(output)
     connection.close()
