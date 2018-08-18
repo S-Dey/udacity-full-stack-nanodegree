@@ -18,7 +18,7 @@ def rename_files():
         print("New name - " + file_name.translate(translation_table) + "\n")
         os.rename(file_name, file_name.translate(translation_table))
 
-    #Going back to the previously working directory.
+    # Going back to the previously working directory.
     os.chdir(saved_path)
 
 
